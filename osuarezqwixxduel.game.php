@@ -88,7 +88,35 @@ class osuarezqwixxduel extends Table
         //self::initStat( 'player', 'player_teststat1', 0 );  // Init a player statistics (for all players)
 
         // TODO: setup the initial game situation here
-       
+        // Init the board
+        $sql = "INSERT INTO board (square_number, square_color, number_tokens, tokens_player) VALUES ";
+        $sql_values = array();
+
+        list( $firstplayer_id, $secondplayer_id ) = array_keys($players);
+
+        $colors = array("blue", "green", "yellow", "red");
+        foreach( $colors as $color )
+        {
+            for( $x=1; $x<=12; $x++ )
+            {
+                $sql_values[] = "('$x', '$color', 0, NULL)";
+            }
+        }
+
+        $sql .= implode(',', $sql_values);
+        self::DbQuery($sql);
+
+        // Init the pass slots
+        $sql = "INSERT INTO board_pass (square_number, square_occupied) VALUES ";
+        $sql_values = array();
+
+        for( $x=1; $x<=4; $x++ )
+        {
+            $sql_values[] = "('$x', False)";
+        }
+
+        $sql .= implode(',', $sql_values);
+        self::DbQuery($sql);
 
         // Activate first player (which is in general a good idea :) )
         $this->activeNextPlayer();
