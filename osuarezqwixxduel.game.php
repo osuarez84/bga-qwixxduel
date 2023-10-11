@@ -97,9 +97,19 @@ class osuarezqwixxduel extends Table
         $colors = array("blue", "green", "yellow", "red");
         foreach( $colors as $color )
         {
+            $counter = 12; 
             for( $x=1; $x<=12; $x++ )
             {
-                $sql_values[] = "('$x', '$color', 0, NULL)";
+                if ($color == "red" || $color == "yellow")
+                {
+                    $value = $x+1;
+                    $sql_values[] = "('$value', '$color', 0, NULL)";
+                }
+                else if ($color == "green" || $color == "blue")
+                {    
+                    $sql_values[] = "('$counter', '$color', 0, NULL)";
+                    $counter -= $counter;
+                }
             }
         }
 
@@ -174,6 +184,44 @@ class osuarezqwixxduel extends Table
     /*
         In this space, you can put any utility methods useful for your game logic
     */
+    function getBoard()
+    {
+        return self::getDoubleKEyCollectionFromDB(
+            "SELECT square_number square, square_value val, square_color color, number_tokens num, tokens_player player
+            FROM board", true
+        );
+    }
+
+    function argPlayerTurn()
+    {
+        // TODO
+        return array(
+            "possible_moves" => self::getPossibleMoves( self::getActivePlayerId() )
+        );
+    }
+
+    function getPossibleMoves($player_id)
+    {
+        $result = array();
+
+        $board = self::getBoard();
+
+        // TODO
+        // do a function for throwing the dice
+        $dice_values = array(6, 3);
+        $dice_sum = $dice_values[0] + $dice_values[1];
+
+        $colors = array("blue", "green", "yellow", "red");
+        foreach( $colors as $color )
+        {
+            $getId = board[]
+            for( $x=$dice_sum; $x<=12;  )
+            // TODO
+        }
+
+
+        $result[$color][$dice_sum] = true;
+    }
 
 
 
@@ -185,6 +233,21 @@ class osuarezqwixxduel extends Table
         Each time a player is doing some game action, one of the methods below is called.
         (note: each method below must match an input method in osuarezqwixxduel.action.php)
     */
+    function playWhiteDice()
+    {
+        // TODO
+    }
+
+    function pass()
+    {
+        // TODO
+    }
+
+    function playColorDie()
+    {
+        // TODO
+    }
+
 
     /*
     

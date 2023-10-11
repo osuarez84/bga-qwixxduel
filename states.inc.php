@@ -64,14 +64,40 @@ $machinestates = array(
     // Note: ID=2 => your first state
 
     2 => array(
-    		"name" => "playerTurn",
-    		"description" => clienttranslate('${actplayer} must play a card or pass'),
-    		"descriptionmyturn" => clienttranslate('${you} must play a card or pass'),
-    		"type" => "activeplayer",
-    		"possibleactions" => array( "playCard", "pass" ),
-    		"transitions" => array( "playCard" => 2, "pass" => 2 )
+        "name" => "rollDice",
+        "description" => "This is the dice roll",
+        "type" => "game",
+        "action" => "stRollDice",
+        "transitions" => array("" => 3)
     ),
-    
+
+    3 => array(
+        "name" => "playerTurn",
+        "description" => clienttranslate('${actplayer} can play white dice or pass'),
+        "descriptionmyturn" => clienttranslate('${you} can play white dice or pass'),
+        "type" => "activeplayer",
+        // "args" => "argPlayerTurn",
+        "possibleactions" => array( "playWhiteDice", "pass" ),
+        "transitions" => array( "playWhiteDice" => 4, "pass" => 4 )
+    ),
+
+    4 => array(
+        "name" => "playerTurnColor",
+        "description" => clienttranslate('${actplayer} can select a pair of color and white dice or pass'),
+        "descriptionmyturn" => clienttranslate('${you} can select a pair of color and white dice or pass'),
+        "type" => "activeplayer",
+        "args" => "argPlayerTurn",
+        "possibleactions" => array("playColorDie", "pass"),
+        "transitions" => array("playColorDie" => 5, "pass" => 5)
+    ),
+
+    5 => array(
+        "name" => "nextPlayer",
+        "type" => "game",
+        "action" => "stNextPlayer",
+        "updateGameProgression" => true,
+        "transitions" => array("nextTurn" => 2, "endGame" => 99)
+    ),
 /*
     Examples:
     

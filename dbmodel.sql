@@ -35,6 +35,7 @@
 
 CREATE TABLE IF NOT EXISTS `board` (
   `square_number` smallint(5) unsigned NOT NULL,
+  `square_value` smallint(5) unsigned NOT NULL,
   `square_color` varchar(10) NOT NULL,
   `number_tokens` smallint(5) unsigned NOT NULL,
   `tokens_player` int(10) unsigned DEFAULT NULL,
