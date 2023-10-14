@@ -40,7 +40,31 @@
   	} 
   	
   	// TODO: defines your action entry points there
+    function playWhiteDice()
+    {
+      // TODO
+      self::setAjaxMode();
 
+
+      $this->game->playWhiteDice();
+      self::ajaxRespnse();
+    }
+
+    function pass()
+    {
+      self::setAjaxMode();
+
+      $this->game->pass();
+      self::ajaxResponse();
+    }
+
+    function playColorDie()
+    {
+      self::setAjaxMode();
+
+      $this->game->playColorDie();
+      self::ajaxResponse();
+    }
 
     /*
     

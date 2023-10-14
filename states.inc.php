@@ -58,7 +58,7 @@ $machinestates = array(
         "description" => "",
         "type" => "manager",
         "action" => "stGameSetup",
-        "transitions" => array( "" => 2 )
+        "transitions" => array( "" => 3 )
     ),
     
     // Note: ID=2 => your first state
@@ -72,13 +72,13 @@ $machinestates = array(
     ),
 
     3 => array(
-        "name" => "playerTurn",
+        "name" => "playerTurn", 
         "description" => clienttranslate('${actplayer} can play white dice or pass'),
         "descriptionmyturn" => clienttranslate('${you} can play white dice or pass'),
         "type" => "activeplayer",
         // "args" => "argPlayerTurn",
         "possibleactions" => array( "playWhiteDice", "pass" ),
-        "transitions" => array( "playWhiteDice" => 4, "pass" => 4 )
+        "transitions" => array( "playColor" => 4, "pass" => 4 )
     ),
 
     4 => array(
@@ -88,7 +88,7 @@ $machinestates = array(
         "type" => "activeplayer",
         "args" => "argPlayerTurn",
         "possibleactions" => array("playColorDie", "pass"),
-        "transitions" => array("playColorDie" => 5, "pass" => 5)
+        "transitions" => array("next" => 5, "pass" => 5)
     ),
 
     5 => array(

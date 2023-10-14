@@ -172,7 +172,65 @@ function (dojo, declare) {
             _ make a call to the game server
         
         */
-        
+        onPlayWhiteDice: function( evt )
+        {
+            console.log('onPlayWhiteDice');
+
+            // Preventing default browser reaction
+            dojo.stopEvent( evt );
+
+            // Check that this actions is possible
+            if( !this.checkAction('playWhiteDice') )
+            {
+                return;
+            }
+
+            this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playWhiteDice.html", {
+                lock: true,
+                myArgument: arg1
+            },
+            this, function( result ){
+                // what to do after call if it succeeded
+                // most of the time: nothing
+            }, function( is_error ){
+                // what to do after the server call in anyway success or failure
+                // most of the time: nothing
+            })
+        },
+
+        onPlayColorDie: function( evt )
+        {
+            console.log('onPlayColorDie');
+
+            // Prventing default browser reaction
+            dojo.stopEvent( evt );
+
+            // Check that this action is possible
+            if( !this.checkAction('playColorDie') )
+            {
+                return;
+            }
+
+            this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playColorDie.html", {
+                lock: true,
+                myArfument: arg1
+            },
+            this, function( result ) {
+                // what to do after call if it succeeded
+                // most of the time: nothing
+            }, function( is_error ) {
+                // what to do after call if it succeeded
+                // most of the time: nothing
+            }
+            )
+        },
+
+        onPass: function( evt )
+        {
+            // TODO
+        }
+
+
         /* Example:
         
         onMyMethodToCall1: function( evt )

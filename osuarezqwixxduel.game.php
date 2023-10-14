@@ -89,44 +89,44 @@ class osuarezqwixxduel extends Table
 
         // TODO: setup the initial game situation here
         // Init the board
-        $sql = "INSERT INTO board (square_number, square_color, number_tokens, tokens_player) VALUES ";
-        $sql_values = array();
+        // $sql = "INSERT INTO board (square_number, square_color, number_tokens, tokens_player) VALUES ";
+        // $sql_values = array();
 
-        list( $firstplayer_id, $secondplayer_id ) = array_keys($players);
+        // list( $firstplayer_id, $secondplayer_id ) = array_keys($players);
 
-        $colors = array("blue", "green", "yellow", "red");
-        foreach( $colors as $color )
-        {
-            $counter = 12; 
-            for( $x=1; $x<=12; $x++ )
-            {
-                if ($color == "red" || $color == "yellow")
-                {
-                    $value = $x+1;
-                    $sql_values[] = "('$value', '$color', 0, NULL)";
-                }
-                else if ($color == "green" || $color == "blue")
-                {    
-                    $sql_values[] = "('$counter', '$color', 0, NULL)";
-                    $counter -= $counter;
-                }
-            }
-        }
+        // $colors = array("blue", "green", "yellow", "red");
+        // foreach( $colors as $color )
+        // {
+        //     $counter = 12; 
+        //     for( $x=1; $x<=12; $x++ )
+        //     {
+        //         if ($color == "red" || $color == "yellow")
+        //         {
+        //             $value = $x+1;
+        //             $sql_values[] = "('$value', '$color', 0, NULL)";
+        //         }
+        //         else if ($color == "green" || $color == "blue")
+        //         {    
+        //             $sql_values[] = "('$counter', '$color', 0, NULL)";
+        //             $counter -= $counter;
+        //         }
+        //     }
+        // }
 
-        $sql .= implode(',', $sql_values);
-        self::DbQuery($sql);
+        // $sql .= implode(',', $sql_values);
+        // self::DbQuery($sql);
 
-        // Init the pass slots
-        $sql = "INSERT INTO board_pass (square_number, square_occupied) VALUES ";
-        $sql_values = array();
+        // // Init the pass slots
+        // $sql = "INSERT INTO board_pass (square_number, square_occupied) VALUES ";
+        // $sql_values = array();
 
-        for( $x=1; $x<=4; $x++ )
-        {
-            $sql_values[] = "('$x', False)";
-        }
+        // for( $x=1; $x<=4; $x++ )
+        // {
+        //     $sql_values[] = "('$x', False)";
+        // }
 
-        $sql .= implode(',', $sql_values);
-        self::DbQuery($sql);
+        // $sql .= implode(',', $sql_values);
+        // self::DbQuery($sql);
 
         // Activate first player (which is in general a good idea :) )
         $this->activeNextPlayer();
@@ -184,46 +184,11 @@ class osuarezqwixxduel extends Table
     /*
         In this space, you can put any utility methods useful for your game logic
     */
-    function getBoard()
-    {
-        return self::getDoubleKEyCollectionFromDB(
-            "SELECT square_number square, square_value val, square_color color, number_tokens num, tokens_player player
-            FROM board", true
-        );
-    }
-
-    function argPlayerTurn()
-    {
-        // TODO
-        return array(
-            "possible_moves" => self::getPossibleMoves( self::getActivePlayerId() )
-        );
-    }
-
-    function getPossibleMoves($player_id)
-    {
-        $result = array();
-
-        $board = self::getBoard();
-
-        // TODO
-        // do a function for throwing the dice
-        $dice_values = array(6, 3);
-        $dice_sum = $dice_values[0] + $dice_values[1];
-
-        $colors = array("blue", "green", "yellow", "red");
-        foreach( $colors as $color )
-        {
-            $getId = board[]
-            for( $x=$dice_sum; $x<=12;  )
-            // TODO
-        }
 
 
-        $result[$color][$dice_sum] = true;
-    }
 
 
+   
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Player actions
@@ -236,16 +201,19 @@ class osuarezqwixxduel extends Table
     function playWhiteDice()
     {
         // TODO
+        $this->gamestate->nextState('playColor');
     }
 
     function pass()
     {
         // TODO
+        $this->gamestate->nextState('pass');
     }
 
     function playColorDie()
     {
         // TODO
+        $this->gamestate->nextState('next');
     }
 
 
@@ -324,6 +292,20 @@ class osuarezqwixxduel extends Table
         $this->gamestate->nextState( 'some_gamestate_transition' );
     }    
     */
+
+    function stRollDice()
+    {
+        // TODO
+        $this->gamestate->nextState();
+    }
+
+    function stNextPlayer()
+    {
+        // TODO
+        // we need to take into account when to end
+        // the game
+        $this->gamestate->nextState('nextTurn');
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Zombie
