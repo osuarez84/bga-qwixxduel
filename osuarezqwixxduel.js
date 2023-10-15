@@ -230,10 +230,10 @@ function (dojo, declare) {
             {
                 return;
             }
-
+            var selectedDice = dojo.query('.dice .dieClicked')
             this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playWhiteDice.html", {
                 lock: true,
-                myArgument: arg1
+                diceValue: dojo.attr(selectedDice, 'data-value')
             },
             this, function( result ){
                 // what to do after call if it succeeded
