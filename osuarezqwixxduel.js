@@ -57,7 +57,7 @@ function (dojo, declare) {
             }
             
             // TODO: Set up your game interface here, according to "gamedatas"
-            dojo.query('.dice').on('click', 
+            dojo.query('.color').on('click', 
                 dojo.hitch(this, "selectDie")
             );
             
@@ -135,7 +135,11 @@ function (dojo, declare) {
             {            
                 switch( stateName )
                 {
-/*               
+                    case 'playerTurn':
+                        this.addActionButton( 'playWhiteDice_button', _('Use'), 'onPlayWhiteDice' );
+                        this.addActionButton( 'pass_button', _('Pass'), 'pass');
+                        break;
+/*                  
                  Example:
  
                  case 'myGameState':
@@ -163,22 +167,34 @@ function (dojo, declare) {
        selectDie: function(evt)
        {
             console.log("Selected die");
-            // TODO
-            // if we are in white dice selection check that we are selection those
+
             dojo.stopEvent(evt);
+            
+            if( !this.checkAction('playWhiteDice') )
+            {
+                return;
+            }
+
             if(this.isCurrentPlayerActive())
             {
-                if( dojo.hasClass(evt.target, 'selected'))
+                if( dojo.hasClass(evt.target, 'dieClicked'))
                 {
-                    // TODO
-                    dojo.style(evt.target, 'background-color', 'white');
-                    dojo.removeClass(evt.target, 'selected');
+                    dojo.removeClass(evt.target, 'dieClicked');
                 }
-                else if (!dojo.hasClass(evt.target, 'selected'))
+                else if (!dojo.hasClass(evt.target, 'dieClicked'))
                 {
-                    dojo.style(evt.target, 'background-color', 'black');
-                    dojo.addClass(evt.target, 'selected');
+                    if(dojo.query('.dieClicked').length >=2)
+                    {
+                        // TODO 
+                        // also check in the backend that only two dice are selected?
+                        this.showMessage(_('Can not select more than two dice!'), 'info')
+                    }
+                    else 
+                    {
+                        dojo.addClass(evt.target, 'dieClicked');
+                    }
                 }
+               
             }
 
 

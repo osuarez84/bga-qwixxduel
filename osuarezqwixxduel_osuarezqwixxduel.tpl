@@ -38,12 +38,12 @@
 
 <div id="dice_wrap" class="whiteblock">
     <h3>Dice Pool</h3>
-    <div class="dice one white"></div>
-    <div class="dice two white"></div>
-    <div class="dice three blue"></div>
-    <div class="dice four green"></div>
-    <div class="dice five yellow"></div>
-    <div class="dice six red"></div>
+    <div class="dice white"></div>
+    <div class="dice white"></div>
+    <div class="dice color blue"></div>
+    <div class="dice color green"></div>
+    <div class="dice color yellow"></div>
+    <div class="dice color red"></div>
 </div>
 
 

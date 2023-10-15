@@ -91,6 +91,10 @@
 .tokencolor_ffffff { background-position: 0px 0px;   }
 .tokencolor_000000 { background-position: -56px 0px;   }
 
+#dice_wrap {
+    text-align: center;
+}
+
 .dice {
     width: 110px;
     height: 110px;
@@ -98,36 +102,36 @@
     background-image: url('img/dice.png');
 }
 
-.dice.one:hover {
+.dice.white {
     background-position: 0px 0px;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
 }
 
-.dice.two:hover {
-    background-position: 0px 0px;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
-}
 
-.dice.three:hover {
+.dice.blue:hover {
     background-position: 0px 0px;
     background-color: blue;
-    box-shadow: 0 10px 20px rgb(1 0 0 / 0.5);
+    text-shadow: 0 0px 30px black;
 }
 
-.dice.four:hover {
+.dice.green:hover {
     background-color: green;
     background-position: 0px 0px;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+    text-shadow: 0 0px 30px black;
 }
 
-.dice.five:hover {
+.dice.yellow:hover {
     background-color: yellow;
     background-position: 0px 0px;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+    text-shadow: 0 0px 30px black;
 }
 
-.dice.six:hover {
+.dice.red:hover {
     background-color: red;
     background-position: 0px 0px;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+    text-shadow: 0 0px 30px black;
+}
+
+.dieClicked {
+    border: 0.1em red dotted;
+    border-radius: 10em;
 }
