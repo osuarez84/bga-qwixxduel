@@ -139,6 +139,9 @@ function (dojo, declare) {
                         this.addActionButton( 'playWhiteDice_button', _('Use'), 'onPlayWhiteDice' );
                         this.addActionButton( 'pass_button', _('Pass'), 'onPass');
                         break;
+                    case 'playerTurnColor':
+                        this.addActionButton( 'playColorDie_button', _('Use'), 'onPlayColorDie' );
+                        this.addActionButton( 'pass_button', _('Pass'), 'onPass');
 /*                  
                  Example:
  
@@ -233,7 +236,7 @@ function (dojo, declare) {
             var selectedDice = dojo.query('.dice .dieClicked')
             this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playWhiteDice.html", {
                 lock: true,
-                diceValue: dojo.attr(selectedDice, 'data-value')
+                diceValues: dojo.attr(selectedDice, 'data-value')
             },
             this, function( result ){
                 // what to do after call if it succeeded
@@ -256,10 +259,10 @@ function (dojo, declare) {
             {
                 return;
             }
-
+            var selectedDice = dojo.query('.dice dieClicked')
             this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playColorDie.html", {
                 lock: true,
-                myArfument: arg1
+                diceValues: dojo.attr(selectedDice, 'data-value')
             },
             this, function( result ) {
                 // what to do after call if it succeeded

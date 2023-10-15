@@ -304,6 +304,7 @@ class osuarezqwixxduel extends Table
         // TODO
         // we need to take into account when to end
         // the game
+        $this->activeNextPlayer();
         $this->gamestate->nextState('nextTurn');
     }
 
