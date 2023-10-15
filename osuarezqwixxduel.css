@@ -132,6 +132,6 @@
 }
 
 .dieClicked {
-    border: 0.1em red dotted;
-    border-radius: 10em;
+    border: 0.2em red dotted;
+    border-radius: 10px;
 }
