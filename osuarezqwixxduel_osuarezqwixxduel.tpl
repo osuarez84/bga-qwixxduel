@@ -37,10 +37,13 @@
 </div>
 
 <div id="dice_wrap" class="whiteblock">
-    <h3>{MY_HAND}</h3>
-    <div id="dice">
-        <div class="die"></div>
-    </div>
+    <h3>Dice Pool</h3>
+    <div class="dice one white" onclick="selectDie"></div>
+    <div class="dice two white" onclick="selectDie"></div>
+    <div class="dice three blue onclick="selectDie"></div>
+    <div class="dice four green" onclick="selectDie"></div>
+    <div class="dice five yellow" onclick="selectDie"></div>
+    <div class="dice six red" onclick="selectDie"></div>
 </div>
 
 

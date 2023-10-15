@@ -91,12 +91,43 @@
 .tokencolor_ffffff { background-position: 0px 0px;   }
 .tokencolor_000000 { background-position: -56px 0px;   }
 
-.die {
-    display: inline-block;
-    position: relative;
-    margin-top: 5px;
-    width: 660px;
+.dice {
+    width: 110px;
     height: 110px;
-    background-image: url('img/dice.png'); /* temp hack to see it */
+    position: relative;
+    background-image: url('img/dice.png');
+}
 
+.dice.one:hover {
+    background-position: 0px 0px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+}
+
+.dice.two:hover {
+    background-position: 0px 0px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+}
+
+.dice.three:hover {
+    background-position: 0px 0px;
+    background-color: blue;
+    box-shadow: 0 10px 20px rgb(1 0 0 / 0.5);
+}
+
+.dice.four:hover {
+    background-color: green;
+    background-position: 0px 0px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+}
+
+.dice.five:hover {
+    background-color: yellow;
+    background-position: 0px 0px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
+}
+
+.dice.six:hover {
+    background-color: red;
+    background-position: 0px 0px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.5);
 }

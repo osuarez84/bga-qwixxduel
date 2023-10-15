@@ -157,6 +157,17 @@ function (dojo, declare) {
             script.
         
         */
+       selectDie: function( evt )
+       {
+            // TODO
+            // if we are in white dice selection check that we are selection those
+
+
+            // if we are in color dice selection check that we are selecting those
+
+            // make a permanent colour border for that die! play with CSS options here I think
+            // if the die was already selected and is selected again then remove the colour border
+       },
 
 
         ///////////////////////////////////////////////////
@@ -228,7 +239,7 @@ function (dojo, declare) {
         onPass: function( evt )
         {
             // TODO
-        }
+        },
 
 
         /* Example:
