@@ -108,6 +108,11 @@ function (dojo, declare) {
             switch( stateName )
             {
             
+                case 'playerTurn':
+                case 'playerTurnColor':
+                    // clean all clicked dice between states
+                    dojo.query('.dice').removeClass('dieClicked');
+                    break;
             /* Example:
             
             case 'myGameState':
