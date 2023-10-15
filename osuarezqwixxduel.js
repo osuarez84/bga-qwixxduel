@@ -57,9 +57,6 @@ function (dojo, declare) {
             }
             
             // TODO: Set up your game interface here, according to "gamedatas"
-            dojo.query('.color').on('click', 
-                dojo.hitch(this, "selectDie")
-            );
             
  
             // Setup game notifications to handle (see "setupNotifications" method below)
@@ -81,7 +78,11 @@ function (dojo, declare) {
             
             switch( stateName )
             {
-            
+                case 'playerTurnColor':
+                    dojo.query('.dice').on('click',
+                        dojo.hitch(this, 'selectDie')    
+                    );
+
             /* Example:
             
             case 'myGameState':
@@ -195,7 +196,16 @@ function (dojo, declare) {
                     {
                         // TODO 
                         // also check in the backend that only two dice are selected?
-                        this.showMessage(_('Can not select more than two dice!'), 'info')
+                        this.showMessage(_('Can not select more than two dice!'), 'info');
+                    }
+                    else if( dojo.hasClass(evt.target, 'white') && dojo.query('.white.dieClicked').length >= 1)
+                    {
+                        // two white dice selected, warning
+                        this.showMessage(_('Can select only one white die!'), 'info');
+                    }
+                    else if( dojo.hasClass(evt.target, 'color') && dojo.query('.color.dieClicked').length >= 1 )
+                    {
+                        this.showMessage(_('Can select only one coloured die!'), 'info');
                     }
                     else 
                     {
