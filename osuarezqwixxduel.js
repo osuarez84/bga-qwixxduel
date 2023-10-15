@@ -178,7 +178,7 @@ function (dojo, declare) {
 
             dojo.stopEvent(evt);
             
-            if( !this.checkAction('playWhiteDice') )
+            if( !this.checkAction('playColorDie') )
             {
                 return;
             }
