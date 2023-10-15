@@ -137,7 +137,7 @@ function (dojo, declare) {
                 {
                     case 'playerTurn':
                         this.addActionButton( 'playWhiteDice_button', _('Use'), 'onPlayWhiteDice' );
-                        this.addActionButton( 'pass_button', _('Pass'), 'pass');
+                        this.addActionButton( 'pass_button', _('Pass'), 'onPass');
                         break;
 /*                  
                  Example:
@@ -267,13 +267,32 @@ function (dojo, declare) {
             }, function( is_error ) {
                 // what to do after call if it succeeded
                 // most of the time: nothing
-            }
-            )
+            })
         },
 
         onPass: function( evt )
         {
-            // TODO
+            console.log('onPass');
+
+            // Prevent default browser reaction
+            dojo.stopEvent( evt );
+
+            // Check that this action is possible
+            if ( !this.checkAction('pass') )
+            {
+                return;
+            }
+
+            this.ajaxcall("/osuarezqwixxduel/osuarezqwixxduel/pass.html", {
+                lock: true
+            },
+            this, function( result ){
+                // what to do after call if it succeded
+                // most of the time: nothing
+            }, function ( is_error ) {
+                // what to do after call if it not succeeded
+                // most of the time: nothing
+            })
         },
 
 

@@ -86,7 +86,7 @@ $machinestates = array(
         "description" => clienttranslate('${actplayer} can select a pair of color and white dice or pass'),
         "descriptionmyturn" => clienttranslate('${you} can select a pair of color and white dice or pass'),
         "type" => "activeplayer",
-        "args" => "argPlayerTurn",
+        // "args" => "argPlayerTurn",
         "possibleactions" => array("playColorDie", "pass"),
         "transitions" => array("next" => 5, "pass" => 5)
     ),
