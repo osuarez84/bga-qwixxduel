@@ -57,6 +57,9 @@ function (dojo, declare) {
             }
             
             // TODO: Set up your game interface here, according to "gamedatas"
+            dojo.query('.dice').on('click', 
+                dojo.hitch(this, "selectDie")
+            );
             
  
             // Setup game notifications to handle (see "setupNotifications" method below)
@@ -157,10 +160,26 @@ function (dojo, declare) {
             script.
         
         */
-       selectDie: function( evt )
+       selectDie: function(evt)
        {
+            console.log("Selected die");
             // TODO
             // if we are in white dice selection check that we are selection those
+            dojo.stopEvent(evt);
+            if(this.isCurrentPlayerActive())
+            {
+                if( dojo.hasClass(evt.target, 'selected'))
+                {
+                    // TODO
+                    dojo.style(evt.target, 'background-color', 'white');
+                    dojo.removeClass(evt.target, 'selected');
+                }
+                else if (!dojo.hasClass(evt.target, 'selected'))
+                {
+                    dojo.style(evt.target, 'background-color', 'black');
+                    dojo.addClass(evt.target, 'selected');
+                }
+            }
 
 
             // if we are in color dice selection check that we are selecting those
