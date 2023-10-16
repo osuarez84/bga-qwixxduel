@@ -42,12 +42,12 @@
   	// TODO: defines your action entry points there
     function playWhiteDice()
     {
-      // TODO
       self::setAjaxMode();
 
-
-      $this->game->playWhiteDice();
-      self::ajaxRespnse();
+      // Retrieve arguments
+      $diceValues = self::getArg( 'diceValues', AT_posint, true );
+      $this->game->playWhiteDice( $diceValues );
+      self::ajaxResponse();
     }
 
     function pass()

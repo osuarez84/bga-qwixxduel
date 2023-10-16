@@ -76,22 +76,40 @@ $machinestates = array(
         "description" => clienttranslate('${actplayer} can play white dice or pass'),
         "descriptionmyturn" => clienttranslate('${you} can play white dice or pass'),
         "type" => "activeplayer",
-        // "args" => "argPlayerTurn",
         "possibleactions" => array( "playWhiteDice", "pass" ),
-        "transitions" => array( "playColor" => 4, "pass" => 4 )
+        "transitions" => array( "toPlayTokenWhiteDice" => 4, "pass" => 5 )
     ),
 
     4 => array(
+        "name" => "selectingWhiteMove",
+        "description" => clienttranslate('${actplayer} can select where to put the token...'),
+        "descriptionmyturn" => clienttranslate('${you} can select where to put the token...'),
+        "type" => "activeplayer",
+        "args" => "argSelectPlace",
+        "possibleactions" => array("playToken"),
+        "transitions" => array("toColorSelection" => 5)
+    ),
+
+    5 => array(
         "name" => "playerTurnColor",
         "description" => clienttranslate('${actplayer} can select a pair of color and white dice or pass'),
         "descriptionmyturn" => clienttranslate('${you} can select a pair of color and white dice or pass'),
         "type" => "activeplayer",
-        // "args" => "argPlayerTurn",
         "possibleactions" => array("playColorDie", "pass"),
-        "transitions" => array("next" => 5, "pass" => 5)
+        "transitions" => array("toPlayTokenColorDice" => 6, "pass" => 7)
     ),
 
-    5 => array(
+    6 => array(
+        "name" => "selectingColorMove",
+        "description" => clienttranslate('${actplayer} can select where to put the token...'),
+        "descriptionmyturn" => clienttranslate('${you} can select where to put the token...'),
+        "type" => "activeplayer",
+        "args" => "argSelectPlace",
+        "possibleactions" => array("playToken"),
+        "transitions" => array("next" => 7)
+    ),
+
+    7 => array(
         "name" => "nextPlayer",
         "type" => "game",
         "action" => "stNextPlayer",

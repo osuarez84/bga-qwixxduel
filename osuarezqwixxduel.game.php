@@ -185,7 +185,18 @@ class osuarezqwixxduel extends Table
         In this space, you can put any utility methods useful for your game logic
     */
 
+    function getBoard()
+    {
+        // TODO
+        return self::getDoubleKeyCollectionFromDB(
+            ""
+        );
+    }
 
+    function getPossibleMoves( $player_id )
+    {
+        // TODO
+    }
 
 
    
@@ -200,8 +211,9 @@ class osuarezqwixxduel extends Table
     */
     function playWhiteDice()
     {
-        // TODO
-        $this->gamestate->nextState('playColor');
+        // Check that this player is active and this action is possible at this moment
+        self::checkAction( 'playWhiteDice' );
+        $this->gamestate->nextState('toPlayTokenWhiteDice');
     }
 
     function pass()
@@ -213,8 +225,19 @@ class osuarezqwixxduel extends Table
     function playColorDie()
     {
         // TODO
+        $this->gamestate->nextState('toPlayTokenColorDice');
+    }
+
+    function playToken()
+    {
+        // TODO
+
+        // next state depends on current state
+        // set conditional for this
+        $this->gamestate->nextState('toColorSelection');
         $this->gamestate->nextState('next');
     }
+
 
 
     /*
@@ -270,6 +293,17 @@ class osuarezqwixxduel extends Table
         );
     }    
     */
+
+    function argSelectPlace()
+    {
+        // TODO
+        // This function should give the possible
+        // moves to the client side when selecting
+        // white dice and color dice
+        return array(
+            'possibleMoves' => self::getPossibleMoves(self::getActivePlayerId())
+        );
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state actions

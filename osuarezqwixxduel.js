@@ -82,6 +82,11 @@ function (dojo, declare) {
                     dojo.query('.dice').on('click',
                         dojo.hitch(this, 'selectDie')    
                     );
+                case 'selectingWhiteMove':
+                case 'selectingColorMove':
+                    // this comes from the server side
+                    this.updatePossibleMoves(args.args.possibleMoves);
+                    break;
 
             /* Example:
             
@@ -223,6 +228,13 @@ function (dojo, declare) {
        },
 
 
+       updatePossibleMoves: function( possibleMoves )
+       {
+            // Remove current possible moves
+            dojo.query( '.possibleMove' ).removeClass( '.possibleMove' );
+            
+            // TODO
+       }
         ///////////////////////////////////////////////////
         //// Player's action
         
@@ -248,10 +260,9 @@ function (dojo, declare) {
             {
                 return;
             }
-            var selectedDice = dojo.query('.dice .dieClicked')
             this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playWhiteDice.html", {
                 lock: true,
-                diceValues: dojo.attr(selectedDice, 'data-value')
+                diceValues: dojo.query('.dice.white').attr('data-value')
             },
             this, function( result ){
                 // what to do after call if it succeeded
@@ -274,7 +285,7 @@ function (dojo, declare) {
             {
                 return;
             }
-            var selectedDice = dojo.query('.dice dieClicked')
+            var selectedDice = dojo.query('.dice.dieClicked')
             this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playColorDie.html", {
                 lock: true,
                 diceValues: dojo.attr(selectedDice, 'data-value')
