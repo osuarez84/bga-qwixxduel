@@ -231,10 +231,6 @@ class osuarezqwixxduel extends Table
     function playToken()
     {
         // TODO
-
-        // next state depends on current state
-        // set conditional for this
-        $this->gamestate->nextState('toColorSelection');
         $this->gamestate->nextState('next');
     }
 
