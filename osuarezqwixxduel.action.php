@@ -66,6 +66,13 @@
       self::ajaxResponse();
     }
 
+    function playToken()
+    {
+      self::setAjaxMode();
+
+      $this->game->playToken();
+      self::ajaxResponse();
+    }
     /*
     
     Example:

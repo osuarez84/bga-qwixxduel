@@ -153,7 +153,12 @@ function (dojo, declare) {
                     case 'playerTurnColor':
                         this.addActionButton( 'playColorDie_button', _('Use'), 'onPlayColorDie' );
                         this.addActionButton( 'pass_button', _('Pass'), 'onPass');
-/*                  
+                        break;
+                    case 'selectingWhiteMove':
+                    case 'selectingColorMove':
+                        this.addActionButton( 'selectingWhiteMove_button', _('Confirm'), 'onConfirmationPlaceToken' );
+                        break;
+/*                      
                  Example:
  
                  case 'myGameState':
@@ -234,7 +239,7 @@ function (dojo, declare) {
             dojo.query( '.possibleMove' ).removeClass( '.possibleMove' );
             
             // TODO
-       }
+       },
         ///////////////////////////////////////////////////
         //// Player's action
         
@@ -324,6 +329,31 @@ function (dojo, declare) {
             })
         },
 
+        onConfirmationPlaceToken: function( evt )
+        {
+            console.log('onConfirmationPlaceToken');
+
+            // Prevent default browser reaction
+            dojo.stopEvent( evt );
+
+            // Check that this action is possible
+            if( !this.checkAction('playToken') )
+            {
+                return;
+            }
+
+            this.ajaxcall("/osuarezqwixxduel/osuarezqwixxduel/playToken.html", {
+                lock: true
+                // TODO set arguments
+            },
+            this, function( result ){
+                // what to do after call if it succeded
+                // most of the time: nothing
+            }, function ( is_error ) {
+                // what to do after call if it not succeeded
+                // most of the time: nothing
+            })
+        },
 
         /* Example:
         
