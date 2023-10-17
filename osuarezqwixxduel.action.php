@@ -69,8 +69,10 @@
     function playToken()
     {
       self::setAjaxMode();
+      $x = self::getArg( "x", AT_posint, true );
+      $y = self::getArg( "y", AT_posint, true );
 
-      $this->game->playToken();
+      $result = $this->game->playToken( $x, $y );
       self::ajaxResponse();
     }
     /*

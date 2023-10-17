@@ -135,3 +135,10 @@
     border: 0.2em red dotted;
     border-radius: 10px;
 }
+
+.possibleMove {
+    background-color: white;
+    opacity: 0.5;
+    filter: alpha(opacity=20); /* For IE8 and earlier */  
+    cursor: pointer;
+}

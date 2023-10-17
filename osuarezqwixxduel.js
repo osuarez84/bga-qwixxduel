@@ -82,9 +82,13 @@ function (dojo, declare) {
                     dojo.query('.dice').on('click',
                         dojo.hitch(this, 'selectDie')    
                     );
+                    break;
                 case 'selectingWhiteMove':
                 case 'selectingColorMove':
                     // this comes from the server side
+                    dojo.query('.square').on('click',
+                        dojo.hitch(this, 'onPlayToken')
+                    );
                     this.updatePossibleMoves(args.args.possibleMoves);
                     break;
 
@@ -237,8 +241,18 @@ function (dojo, declare) {
        {
             // Remove current possible moves
             dojo.query( '.possibleMove' ).removeClass( '.possibleMove' );
+            console.log(possibleMoves);
             
-            // TODO
+            for( var x in possibleMoves )
+            {
+                for( var y in possibleMoves[ x ] )
+                {
+                    // x, y is a possible move
+                    dojo.addClass( 'square_'+x+'_'+y, 'possibleMove' );
+                }
+            }
+
+            this.addTooltipToClass( 'possibleMove', '', _('Place a disc here') );
        },
         ///////////////////////////////////////////////////
         //// Player's action
@@ -329,9 +343,9 @@ function (dojo, declare) {
             })
         },
 
-        onConfirmationPlaceToken: function( evt )
+        onPlayToken: function( evt )
         {
-            console.log('onConfirmationPlaceToken');
+            console.log('onPlayToken');
 
             // Prevent default browser reaction
             dojo.stopEvent( evt );
@@ -342,9 +356,22 @@ function (dojo, declare) {
                 return;
             }
 
+            // Get the clicked square x and y
+            var coords = evt.currentTarget.id.split('_');
+            var x = coords[1];
+            var y = coords[2];
+
+            if( !dojo.hasClass( 'square_'+x+'_'+y, 'possibleMove' ) )
+            {
+                // This is not a possible move => the click does nothing
+                return;
+            }
+
+
             this.ajaxcall("/osuarezqwixxduel/osuarezqwixxduel/playToken.html", {
-                lock: true
-                // TODO set arguments
+                lock: true,
+                x: x,
+                y: y
             },
             this, function( result ){
                 // what to do after call if it succeded
@@ -354,6 +381,7 @@ function (dojo, declare) {
                 // most of the time: nothing
             })
         },
+
 
         /* Example:
         

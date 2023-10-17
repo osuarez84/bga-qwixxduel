@@ -196,6 +196,9 @@ class osuarezqwixxduel extends Table
     function getPossibleMoves( $player_id )
     {
         // TODO
+        $result = array();
+        $result[1][1] = true;
+        return $result;
     }
 
 
@@ -213,7 +216,7 @@ class osuarezqwixxduel extends Table
     {
         // Check that this player is active and this action is possible at this moment
         self::checkAction( 'playWhiteDice' );
-        $this->gamestate->nextState('toPlayTokenWhiteDice');
+        $this->gamestate->nextState('next');
     }
 
     function pass()
@@ -231,6 +234,16 @@ class osuarezqwixxduel extends Table
     function playToken()
     {
         // TODO
+        // check that this player is active and that this action is possible at this moment
+        // already done on the client side but must be done on server side also!!
+        self::checkAction( 'playToken' );
+
+        // Check this is a possible move
+        $board = self::getBoard();
+        // TODO
+
+
+
         $this->gamestate->nextState('next');
     }
 
