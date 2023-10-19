@@ -47,3 +47,9 @@ CREATE TABLE IF NOT EXISTS `board_pass` (
   `square_occupied` bool NOT NULL,
   PRIMARY KEY (`square_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `dice_roll` (
+  `dice_color` varchar(10) NOT NULL,
+  `dice_value` smallint(6) unsigned NOT NULL,
+  PRIMARY KEY (`dice_color`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

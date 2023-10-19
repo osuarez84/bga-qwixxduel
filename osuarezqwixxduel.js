@@ -262,16 +262,15 @@ function (dojo, declare) {
        updateDiceValues: function( diceResults )
        {
             // Remove current values
-            for( $x=1; $x <= 6; $x++ )
+            for( var x=1; x <= 6; x++ )
             {
-                dojo.query( '.dice' ).removeClass( 'd6-v'+$x );
+                dojo.query( '.dice' ).removeClass( 'd6-v'+x );
             }
             console.log('diceResults');
 
-            $allDiceObjects = dojo.query( '.dice' );
-            for( $x=0; $x<=5; $x++ )
+            for( var key in diceResults )
             {
-                dojo.addClass($allDiceObjects[$x], 'd6-v'+diceResults[$x]);
+                dojo.query( '.'+key ).addClass('d6-v'+diceResults[key]);
             }
        },
         ///////////////////////////////////////////////////

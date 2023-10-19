@@ -317,12 +317,24 @@ class osuarezqwixxduel extends Table
     function argDiceRoll() 
     {
         // Roll 6 dice
+        $diceColor = array(
+            "white1",
+            "white2",
+            "blue",
+            "green",
+            "yellow",
+            "red"
+        );
+
         $diceRollResult = array();
-        for( $x=0 ; $x<=5; $x++ )
+        foreach( $diceColor as $color )
         {
             $val = bga_rand(1,6);
-            $diceRollResult[] = $val;
+            $diceRollResult[$color] = $val;
         }
+
+        // Put dice roll in the DDBB
+        // TODO        
 
         return array(
             'diceResults' => $diceRollResult
