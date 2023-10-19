@@ -63,19 +63,13 @@ $machinestates = array(
     
     // Note: ID=2 => your first state
 
-    2 => array(
-        "name" => "rollDice",
-        "description" => "This is the dice roll",
-        "type" => "game",
-        "action" => "stRollDice",
-        "transitions" => array("" => 3)
-    ),
 
     3 => array(
         "name" => "playerTurn", 
         "description" => clienttranslate('${actplayer} can play white dice or pass'),
         "descriptionmyturn" => clienttranslate('${you} can play white dice or pass'),
         "type" => "activeplayer",
+        "args" => "argDiceRoll",
         "possibleactions" => array( "playWhiteDice", "pass" ),
         "transitions" => array( "next" => 4, "pass" => 5 )
     ),

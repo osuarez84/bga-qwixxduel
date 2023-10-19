@@ -78,6 +78,10 @@ function (dojo, declare) {
             
             switch( stateName )
             {
+                case 'playerTurn':
+                    console.log('playerTurn');
+                    this.updateDiceValues(args.args.diceResults);
+                    break;
                 case 'playerTurnColor':
                     dojo.query('.dice').on('click',
                         dojo.hitch(this, 'selectDie')    
@@ -240,8 +244,8 @@ function (dojo, declare) {
        updatePossibleMoves: function( possibleMoves )
        {
             // Remove current possible moves
-            dojo.query( '.possibleMove' ).removeClass( '.possibleMove' );
-            console.log(possibleMoves);
+            dojo.query( '.possibleMove' ).removeClass( 'possibleMove' );
+            console.log('possibleMoves');
             
             for( var x in possibleMoves )
             {
@@ -253,6 +257,22 @@ function (dojo, declare) {
             }
 
             this.addTooltipToClass( 'possibleMove', '', _('Place a disc here') );
+       },
+
+       updateDiceValues: function( diceResults )
+       {
+            // Remove current values
+            for( $x=1; $x <= 6; $x++ )
+            {
+                dojo.query( '.dice' ).removeClass( 'd6-v'+$x );
+            }
+            console.log('diceResults');
+
+            $allDiceObjects = dojo.query( '.dice' );
+            for( $x=0; $x<=5; $x++ )
+            {
+                dojo.addClass($allDiceObjects[$x], 'd6-v'+diceResults[$x]);
+            }
        },
         ///////////////////////////////////////////////////
         //// Player's action

@@ -314,6 +314,21 @@ class osuarezqwixxduel extends Table
         );
     }
 
+    function argDiceRoll() 
+    {
+        // Roll 6 dice
+        $diceRollResult = array();
+        for( $x=0 ; $x<=5; $x++ )
+        {
+            $val = bga_rand(1,6);
+            $diceRollResult[] = $val;
+        }
+
+        return array(
+            'diceResults' => $diceRollResult
+        );
+    }
+
 //////////////////////////////////////////////////////////////////////////////
 //////////// Game state actions
 ////////////
@@ -338,7 +353,7 @@ class osuarezqwixxduel extends Table
 
     function stRollDice()
     {
-        // TODO
+
         $this->gamestate->nextState();
     }
 
