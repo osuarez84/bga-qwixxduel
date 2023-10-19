@@ -102,32 +102,48 @@
     background-image: url('img/dice.png');
 }
 
-.dice.white {
+.dice.d6-v1 {
     background-position: 0px 0px;
+}
+
+.dice.d6-v2 {
+    background-position: -110px 0px;
+}
+
+.dice.d6-v3 {
+    background-position: -220px 0px;
+}
+
+.dice.d6-v4 {
+    background-position: -330px 0px;
+}
+
+.dice.d6-v5 {
+    background-position: -440px 0px;
+}
+
+.dice.d6-v6 {
+    background-position: -550px 0px;
 }
 
 
 .dice.blue:hover {
-    background-position: 0px 0px;
     background-color: blue;
     text-shadow: 0 0px 30px black;
 }
 
 .dice.green:hover {
     background-color: green;
-    background-position: 0px 0px;
     text-shadow: 0 0px 30px black;
 }
 
 .dice.yellow:hover {
     background-color: yellow;
-    background-position: 0px 0px;
     text-shadow: 0 0px 30px black;
 }
 
 .dice.red:hover {
     background-color: red;
-    background-position: 0px 0px;
     text-shadow: 0 0px 30px black;
 }
 
