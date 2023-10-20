@@ -89,29 +89,31 @@ class osuarezqwixxduel extends Table
 
         // TODO: setup the initial game situation here
         // Init the board
-        // $sql = "INSERT INTO board (square_number, square_color, number_tokens, tokens_player) VALUES ";
-        // $sql_values = array();
+        $sql = "INSERT INTO board (square_value, square_color, number_tokens, tokens_player) VALUES ";
+        $sql_values = array();
 
-        // list( $firstplayer_id, $secondplayer_id ) = array_keys($players);
+        list( $firstplayer_id, $secondplayer_id ) = array_keys($players);
 
-        // $colors = array("blue", "green", "yellow", "red");
-        // foreach( $colors as $color )
-        // {
-        //     $counter = 12; 
-        //     for( $x=1; $x<=12; $x++ )
-        //     {
-        //         if ($color == "red" || $color == "yellow")
-        //         {
-        //             $value = $x+1;
-        //             $sql_values[] = "('$value', '$color', 0, NULL)";
-        //         }
-        //         else if ($color == "green" || $color == "blue")
-        //         {    
-        //             $sql_values[] = "('$counter', '$color', 0, NULL)";
-        //             $counter -= $counter;
-        //         }
-        //     }
-        // }
+        $colorsLeftToRight = array("yellow", "red");
+        foreach( $colorsLeftToRight as $color )
+        {
+            for( $x=2; $x<=13; $x++ )
+            {
+                $sql_values[] = "('$x', '$color', 0, null)";
+            }
+        }
+
+        $colorsRightToLeft = array("green", "blue");
+        foreach( $colorsRightToLeft as $color )
+        {
+            for( $x=13; $x>=2; $x-- )
+            {
+                $sql_values[] = "('$x', '$color', 0, null)";
+            }
+        }
+
+        $sql .= implode(',', $sql_values);
+        self::DbQuery($sql);
 
         // $sql .= implode(',', $sql_values);
         // self::DbQuery($sql);

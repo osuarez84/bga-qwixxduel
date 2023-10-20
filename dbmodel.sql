@@ -34,19 +34,19 @@
 -- ALTER TABLE `player` ADD `player_my_custom_field` INT UNSIGNED NOT NULL DEFAULT '0';
 
 CREATE TABLE IF NOT EXISTS `board` (
-  `square_number` smallint(5) unsigned NOT NULL,
+  `square_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `square_value` smallint(5) unsigned NOT NULL,
   `square_color` varchar(10) NOT NULL,
   `number_tokens` smallint(5) unsigned NOT NULL,
   `tokens_player` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`square_number`, `square_color`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`square_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `board_pass` (
-  `square_number` smallint(5) unsigned NOT NULL,
-  `square_occupied` bool NOT NULL,
-  PRIMARY KEY (`square_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `pass_square_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `pass_square_occupied` bool NOT NULL,
+  PRIMARY KEY (`pass_square_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `dice_roll` (
   `dice_color` varchar(10) NOT NULL,
