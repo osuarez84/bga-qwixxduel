@@ -127,6 +127,18 @@ class osuarezqwixxduel extends Table
         $sql .= implode(',', $sql_values);
         self::DbQuery($sql);
 
+        // Init dice roll table
+        $sql = "INSERT INTO dice_roll (dice_color, dice_value) VALUES ";
+        $sql_values = array();
+
+        foreach( array("blue", "red", "white1", "white2", "green", "yellow") as $die )
+        {
+            $sql_values[] = "('$die', 1)";
+        }
+
+        $sql .= implode(',', $sql_values);
+        self::DbQuery($sql);
+
         // Activate first player (which is in general a good idea :) )
         $this->activeNextPlayer();
 
