@@ -316,7 +316,6 @@ class osuarezqwixxduel extends Table
 
     function argSelectPlace()
     {
-        // TODO
         // This function should give the possible
         // moves to the client side when selecting
         // white dice and color dice
@@ -342,10 +341,9 @@ class osuarezqwixxduel extends Table
         {
             $val = bga_rand(1,6);
             $diceRollResult[$color] = $val;
+            // Put dice roll in the DDBB
+            self::DbQuery("UPDATE dice_roll SET dice_value = $val WHERE dice_color = '$color'");
         }
-
-        // Put dice roll in the DDBB
-        // TODO        
 
         return array(
             'diceResults' => $diceRollResult
