@@ -115,20 +115,17 @@ class osuarezqwixxduel extends Table
         $sql .= implode(',', $sql_values);
         self::DbQuery($sql);
 
-        // $sql .= implode(',', $sql_values);
-        // self::DbQuery($sql);
+        // Init the pass slots
+        $sql = "INSERT INTO board_pass (pass_square_occupied) VALUES ";
+        $sql_values = array();
 
-        // // Init the pass slots
-        // $sql = "INSERT INTO board_pass (square_number, square_occupied) VALUES ";
-        // $sql_values = array();
+        for( $x=1; $x<=4; $x++ )
+        {
+            $sql_values[] = "(False)";
+        }
 
-        // for( $x=1; $x<=4; $x++ )
-        // {
-        //     $sql_values[] = "('$x', False)";
-        // }
-
-        // $sql .= implode(',', $sql_values);
-        // self::DbQuery($sql);
+        $sql .= implode(',', $sql_values);
+        self::DbQuery($sql);
 
         // Activate first player (which is in general a good idea :) )
         $this->activeNextPlayer();
