@@ -208,7 +208,7 @@ class osuarezqwixxduel extends Table
     function getDiceRollValue()
     {
         return self::getCollectionFromDB(
-            "SELECT dice_color color, dice_value value FROM dice_roll", false
+            "SELECT dice_color color, dice_value value FROM dice_roll", true
         );
     }
 
@@ -226,6 +226,11 @@ class osuarezqwixxduel extends Table
             // current player or the opponent
             // if it is an opponent token check if >1 token in the square
             // bring decission based on that information
+            $whiteSum = $diceValues['white1'] + $diceValues['white2'];
+            foreach( array("red", "yellow", "green", "blue") as $color )
+            {
+                $board[$color][$whiteSum] // TODO
+            }
 
         }
         else if( $state['name'] == 'selectingColorMove' )
