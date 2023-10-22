@@ -45,7 +45,10 @@ class view_osuarezqwixxduel_osuarezqwixxduel extends game_view
         $this->page->begin_block( "osuarezqwixxduel_osuarezqwixxduel", "square" );
 
         $hor_scale = 101.5;
-        foreach( array("red", "yellow", "blue", "green") as $color )
+        $ver_scale = 93;
+        $y = 1;
+
+        foreach( array("red", "yellow", "gree", "blue") as $color )
         {
             if( $color == "red" || $color == "yellow" )
             {
@@ -62,6 +65,7 @@ class view_osuarezqwixxduel_osuarezqwixxduel extends game_view
                     'X' => $x,
                     'VALUE' => $counter,
                     'LEFT' => round( ($x-1)*$hor_scale+101 ),
+                    'TOP' => round( ($y-1)*$ver_scale+70 )
                 ));
                 if( $color == "red" || $color == "yellow" )
                 {
@@ -72,6 +76,7 @@ class view_osuarezqwixxduel_osuarezqwixxduel extends game_view
                     $counter--;
                 }
             }
+            $y++;
         }
 
         // TODO
