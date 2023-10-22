@@ -41,23 +41,41 @@ class view_osuarezqwixxduel_osuarezqwixxduel extends game_view
         $players_nbr = count( $players );
 
         /*********** Place your code below:  ************/
+       
         $this->page->begin_block( "osuarezqwixxduel_osuarezqwixxduel", "square" );
 
         $hor_scale = 101.5;
-        $ver_scale = 144;
-        for( $x=1; $x<=12; $x++ )
+        foreach( array("red", "yellow", "blue", "green") as $color )
         {
-            for( $y=1; $y<=4; $y++ )
+            if( $color == "red" || $color == "yellow" )
+            {
+                $counter = 2;
+            }
+            else
+            {
+                $counter = 12;
+            }
+            for( $x=1; $x<=11; $x++ )
             {
                 $this->page->insert_block("square", array(
+                    'COLOR' => $color,
                     'X' => $x,
-                    'Y' => $y,
+                    'VALUE' => $counter,
                     'LEFT' => round( ($x-1)*$hor_scale+101 ),
-                    'TOP' => round( ($y-1)*$ver_scale+53 )
                 ));
+                if( $color == "red" || $color == "yellow" )
+                {
+                    $counter++;
+                }
+                else 
+                {
+                    $counter--;
+                }
             }
         }
 
+        // TODO
+        // Add block for the padlock squares
 
         $this->page->begin_block( "osuarezqwixxduel_osuarezqwixxduel", "square_pass" );
 

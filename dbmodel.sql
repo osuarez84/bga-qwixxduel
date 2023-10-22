@@ -34,13 +34,12 @@
 -- ALTER TABLE `player` ADD `player_my_custom_field` INT UNSIGNED NOT NULL DEFAULT '0';
 
 CREATE TABLE IF NOT EXISTS `board` (
-  `square_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `square_value` smallint(5) unsigned NOT NULL,
   `square_color` varchar(10) NOT NULL,
   `number_tokens` smallint(5) unsigned NOT NULL,
   `tokens_player` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`square_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+  PRIMARY KEY (`square_color`, `square_value`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `board_pass` (
   `pass_square_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,

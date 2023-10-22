@@ -45,8 +45,7 @@
       self::setAjaxMode();
 
       // Retrieve arguments
-      $diceValues = self::getArg( 'diceValues', AT_posint, true );
-      $this->game->playWhiteDice( $diceValues );
+      $this->game->playWhiteDice();
       self::ajaxResponse();
     }
 

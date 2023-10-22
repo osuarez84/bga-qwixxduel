@@ -247,14 +247,12 @@ function (dojo, declare) {
             dojo.query( '.possibleMove' ).removeClass( 'possibleMove' );
             console.log('possibleMoves');
             
-            for( var x in possibleMoves )
-            {
-                for( var y in possibleMoves[ x ] )
-                {
-                    // x, y is a possible move
-                    dojo.addClass( 'square_'+x+'_'+y, 'possibleMove' );
-                }
-            }
+            var value = Object.keys(possibleMoves)[0];
+            var colors = possibleMoves[value];
+
+            colors.array.forEach(element => {
+                dojo.query( '.square.'+element+value ).addClass( 'possibleMove' );
+            });
 
             this.addTooltipToClass( 'possibleMove', '', _('Place a disc here') );
        },
@@ -270,7 +268,7 @@ function (dojo, declare) {
 
             for( var key in diceResults )
             {
-                dojo.query( '.'+key ).addClass('d6-v'+diceResults[key]);
+                dojo.query( '.dice.'+key ).addClass('d6-v'+diceResults[key]);
             }
        },
         ///////////////////////////////////////////////////
@@ -298,9 +296,9 @@ function (dojo, declare) {
             {
                 return;
             }
+
             this.ajaxcall( "/osuarezqwixxduel/osuarezqwixxduel/playWhiteDice.html", {
                 lock: true,
-                diceValues: dojo.query('.dice.white').attr('data-value')
             },
             this, function( result ){
                 // what to do after call if it succeeded

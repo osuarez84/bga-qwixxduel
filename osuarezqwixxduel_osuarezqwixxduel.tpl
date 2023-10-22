@@ -27,8 +27,9 @@
 
 <div id="board">
     <!-- BEGIN square -->
-        <div id="square_{X}_{Y}" class="square" style="left: {LEFT}px; top: {TOP}px;"></div>
+        <div id="square_{COLOR}_{X}" class="square {COLOR} {VALUE}" style="left: {LEFT}px;"></div>
     <!-- END square -->
+
     <!-- BEGIN square_pass -->
         <div id="square_{X}_{Y}" class="square" style="left: {LEFT}px; top: {TOP}px;"></div>
     <!-- END square_pass -->

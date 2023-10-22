@@ -199,16 +199,47 @@ class osuarezqwixxduel extends Table
     function getBoard()
     {
         // TODO
-        return self::getDoubleKeyCollectionFromDB(
-            ""
+        return self::getCollectionFromDB(
+            "SELECT square_color color, square_value value, number_tokens tokens, tokens_player player
+            FROM board", false
+        );
+    }
+
+    function getDiceRollValue()
+    {
+        return self::getCollectionFromDB(
+            "SELECT dice_color color, dice_value value FROM dice_roll", false
         );
     }
 
     function getPossibleMoves( $player_id )
     {
-        // TODO
+        $state = $this->gamestate->state();
+        $board = self::getBoard();
+        $diceValues = self::getDiceRollValue();
+
+        if( $state['name'] == 'selectingWhiteMove' )
+        {
+            // if state white dice check possible moves in all colors
+            // loop from right to left until the value of the dice
+            // stop when find an occupied square, check if the token is from the 
+            // current player or the opponent
+            // if it is an opponent token check if >1 token in the square
+            // bring decission based on that information
+
+        }
+        else if( $state['name'] == 'selectingColorMove' )
+        {
+            // if state color die check possible moves only in the correspondent color
+
+        }
+
         $result = array();
-        $result[1][1] = true;
+        // TODO
+        // Example of return
+        // after having the dice result we deliver only the colours
+        // where the player can play
+        // 7 => array('red', 'blue')
         return $result;
     }
 
